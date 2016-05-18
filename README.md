@@ -1,3 +1,3 @@
 # Ionic-News-App
 
-This is a simple Single View App that loads news form Ionic subreddit
+This is a simple Single View App that loads news form Ionic subreddit on reddit.com
