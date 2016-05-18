@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+    
+    <!-- Moment -->
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/angular-moment/angular-moment.min.js"></script>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+
+    <script src="js/homeController.js"></script>
+  </head>
+  <body ng-app="starter" ng-controller="HomeController">
+
+    <ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">/r/Ionic</h1>
+      </ion-header-bar>
+      <ion-content>
+      <ion-refresher pulling-text="Pull to refresh..." on-refresh="loadNewerStories()"></ion-refresher>
+      <ion-list >
+        <ion-item class="item-thumbnail-left item-icon-right" ng-repeat="s in stories track by s.id" ng-click="openLink(s.url)">
+          <img ng-src="{{s.thumbnail}}" alt="">
+          <h2 class="story-title">{{s.title}}</h2>
+          <p>
+            <span am-time-ago="s.created-utc" am-preprocess="unix"></span> - {{s.domain}}</p>
+          <span class="item-note">
+            {{s.author}}
+          </span>
+          <i class="icon ion-ios-arrow-right"></i>
+        </ion-item>
+      </ion-list>
+      <ion-infinite-scroll
+        on-infinite="loadMoreStrories()"
+        distance="7%">
+      </ion-infinite-scroll>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
